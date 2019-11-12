@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="EUC-KR">
+		<title>Table 태그 : 표그리기</title>
+	</head>
+	<body>
+		<table border = "5" style="border-collapse : collapse;">
+		<!-- border-collapse : 셀간간격 제거 -->
+			<thead>
+				<tr><th>Header1</th><th>Header2</th></tr>
+			</thead>
+			<tbody>
+			<!-- tr:행 td:열 -->
+				<tr><td>Data1</td><td rowspan="2">Data2</td></tr>
+				<tr><td>Data3</td>
+			</tbody>
+			<tfoot>
+				<tr><td colspan="2">Foot1</td></tr>
+			</tfoot>
+		</table>
+	</body>
+</html>

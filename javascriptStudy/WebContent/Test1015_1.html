@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="EUC-KR">
+	<title>약수구하기</title>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script type="text/javascript">
+		function math(){
+			n1 = document.getElementById("num")
+			num = parseInt(n1.value)
+			m = num/2
+			html = "<table class='w3-table-all'><caption>"+num+"의 약수</caption><tr>"
+			for(i=1;i<=m;i++){
+				if(num%i == 0){
+					html += "<td>"+i+"</td>"
+				}	
+			}
+			html += "</tr>"
+			result.innerHTML = html			
+		}
+	</script>
+</head>
+<body>
+	<input type="text" id="num">
+	<input type="button" value="약수구하기" onclick="math()">
+	<div id="result">
+	</div>
+</body>
+</html>

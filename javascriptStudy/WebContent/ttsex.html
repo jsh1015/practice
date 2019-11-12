@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="EUC-KR">
+	<title>Text To Speech 예제</title>
+	<script type="text/javascript">
+		var msg = new SpeechSynthesisUtterance();
+		function setlang(t){
+			msg.lang = t;
+		}
+		function ttsTest(){
+		//	msg.text = intext.value;
+
+		//	getElementById(id속성값) : id속성값에 해당하는 태그 객체를 리턴
+			msg.text = document.getElementById("intext").value;
+			speechSynthesis.speak(msg);
+		}
+	</script>
+</head>
+<body>
+	<!--
+		id 속성 : 정의는 페이지에서 유일함.
+				 유일하기 때문에 intext.value 처럼 사용가능. 
+	 -->
+	<textarea rows="10" cols="100" id="intext">안녕하세요</textarea>
+	<input type="button" onclick="setlang('ko_KR'); ttsTest()" value="읽기"><br>
+</body>
+</html>

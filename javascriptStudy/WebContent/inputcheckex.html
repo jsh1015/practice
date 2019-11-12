@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="EUC-KR">
+	<title>로그인</title>
+	<script type="text/javascript">
+		function checkinput(f){
+			if(f.id.value ==""){
+				alert("아이디를 입력하세요")
+				f.id.focus(); //커서가 id로 감
+				return false;
+			}
+			if(f.pw.value == ""){
+				alert("비밀번호를 입력하세요")
+				f.pw.focus();
+				return false;
+			}
+			// id와 pw가 입력된 경우
+			// id, pw 입력된 값을 openex1.html에 전송하기
+			
+			//openex1.html의 id 값에 f.id.value 값을 보냄
+			opener.document.getElementById("id").value = f.id.value;
+//			getElementById(id속성값) : id속성값에 해당하는 태그 객체를 리턴
+			opener.document.getElementById("pw").value = f.pw.value;
+			
+			self.close(); //자기 스스로 닫기.
+			return false; //onsubmit가 아예실행 되지 않게 설정
+		}
+	</script>
+</head>
+<body>
+	<!-- 
+		 onsubmit : form에 소속된 submit 버튼이 클릭되면 form에 발생되는 이벤트
+		 this : form 객체
+	 -->
+	<form name="f" method="post" action="exam02.html" onsubmit="return checkinput(this)">
+												<!-- onsubmit 가 false이면 action을 취하지 않음. -->
+		아이디 : <input type="text" name="id"><br>
+		비밀번호 : <input type="text" name="pw"><br>
+		<input type="submit" value="로그인">
+	</form>
+</body>
+</html>

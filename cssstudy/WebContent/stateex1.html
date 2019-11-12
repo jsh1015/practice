@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="EUC-KR">
+		<title>상태 선택자</title>
+		<style type="text/css">
+			input:enabled{background-color:skyblue;}
+			input:disabled{background-color:yellow;}
+			input:focus{background-color:pink;}
+			ul{overflow:hidden;}
+			li{list-style:none; float:left; padding:15px;}
+			/* float : 우선 정렬 , padding : 셀간간격15px */
+			li:nth-child(2n){background-color: #ff0055;}/*짝수번째*/
+			li:nth-child(2n+1){background-color: orange;}/*홀수번째*/
+			li:first-child{background-color:pink; border-radius: 10px 0 0 10px;}
+			li:last-child{background-color:pink; border-radius: 0 10px 10px 0;}
+			/* 시계방향으로 값을 지정 */
+			
+			/* px : 픽셀단위
+			   em : 배수단위
+			   		font-size:1.0em (= 100%);s
+			   %  : 퍼센트단위 
+			   RGBA : A 불투명단위 : 0이면 불투명
+			   
+			   margin : 셀과셀사이의 간격
+			   padding : 셀 안의 간격
+			   border: 굵기 solid선종류 색상
+			*/
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>첫번째</li><li>두번째</li><li>세번째</li><li>네번째</li>
+			<li>다섯번째</li><li>여섯번째</li><li>일곱번째</li><li>여덟번째</li>
+		</ul>
+		<h2>사용가능</h2>
+		<input type="text" value="input과 같은 의미">
+		<input type="text"><br>
+		<input>
+		<h2>사용불가능</h2>
+		<input disabled="disabled" value="사용불가능">
+	</body>
+</html>

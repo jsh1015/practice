@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--
+	1. 자바스크립트에서 객체 생성하기 : 사용자정의 객체
+	2. 태그 위치 설정하기
+	3. 마우스이벤트 처리 
+ -->
+	<meta charset="EUC-KR">
+	<title></title>
+	<script type="text/javascript">
+		function nextRandomInteger(limit){ 
+			return Math.random(Math.random()*limit);
+		}
+		function randomSpeed(maxSpeed){ //위치변경
+			return Math.random()*maxSpeed - Math.random()*maxSpeed;
+		}
+		var canvasWidth = 700;
+		var canvasHeight = 500;
+		var total = 10;
+		
+		//A 생성
+		function MovingText(){ //클래스,객체의 생성자 정의. new MovingText() 호출
+			this.x = nextRandomInteger(canvasWidth); //0~700사이의 임의의 값이 저장 
+			//this.x :멤버변수
+			this.y = nextRandomInteger(canvasHeight); //0~500사이
+			this.vX = randomSpeed(2);// -2~2 사이의 값
+			this.vY = randomSpeed(2);// -2~2 사이의 값 : 움직이는 속도. 위치변경값
+			//document : 문서 객체
+			// <h1>A</h1>
+			this.body = document.createElement("h1"); //문서로부터 h1이라는 태그를 만들어줌
+			this.body.innerHTML = "A";
+			this.body.setAttribute //속성 등록
+					("style","background-color:white");
+			this.body.style.position = "absolute"; //위치 지정(절대경로)
+			var text = this.body;
+			// 클릭 이벤트 등록
+			this.body.onclick = function(){ //this를 쓸 수 없기때문에 text에 넣어줌
+				if(text.innerHTML == "A"){
+					--total;
+					alert("남은 글자 수 : " +total);
+					text.innerHTML = "B";
+				}else{
+					return;
+				}
+			}
+			//this.body = h1
+			//<body><h1 ......>A</h1></body>
+			document.body.appendChild(this.body); 
+		}
+		
+		//MovingText 객체의 멤버 메서드 정의
+		//MovingText객체의 멤버메서드prototype의 멤버변수 move 
+		MovingText.prototype.move = function(){
+			if(this.body.innerHTML == 'B') return; //B멈추게한다.
+			if(this.x < 0||this.x > canvasWidth){
+				this.vX *= -1; //지정된 값을 벗어나면 -1을 곱해줘서 다시 안으로 들어오게 함.
+			}
+			if(this.y < 0||this.y >canvasHeight){
+				this.vY *= -1;
+			}
+			this.x += this.vX;
+			this.y += this.vY;
+			this.body.style.left = this.x + "px";
+			this.body.style.top = this.y + "px";
+		}
+		
+		//윈도우가 로드될때 이 함수를 실행
+		window.onload = function(){
+			var movingTexts = []; // [] : 자바스크립트의 배열 생성
+			for(var i=0;i<10;i++){ //10개의 A글자가 body 에 추가 됨.위치는 마음대로.
+				movingTexts.push(new MovingText()) //객체 생성
+			}
+			var game = setInterval(function(){
+				for(var i in movingTexts){ //개선된 for문
+					if(total < 4){
+						alert("게임 종료")
+						clearinterval(game);
+						return;
+					}
+					movingTexts[i].move(); //move메서드 때문에 A라는 글자 위치가 변경됨.
+				}
+			},1000/60); //60분에 1초마다
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

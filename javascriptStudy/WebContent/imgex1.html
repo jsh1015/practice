@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="EUC-KR">
+	<title>이미지 선택하기</title>
+	<script type="text/javascript">
+	// * 자바에서 태그는 객체로 인식
+	//sel : select 객체 전달.
+	//img : img 객체 전달.
+		function drawing(sel, img){
+			if(sel.value == "hi.gif"){
+				img.width = 50;
+				img.height = 50;
+			}else{
+				img.width = "";
+				img.height = ;
+			}
+			img.src = "img/" + sel.value;
+			//img.src = img/apple.gif;
+		}
+	</script>
+</head>
+<body>
+	<form name="f">
+		<table>
+		<!-- 
+			onchange 이벤트 : 값의 변경 발생
+			this : 이벤트 발생된 객체 select 태그
+			document.img : img 객체는 form의 하위 객체가 아님.
+						   document에 속한 객체이므로 document 객체에서 직접 접근함.
+		-->
+			<tr>
+				<td>
+				<select name="s" onchange="drawing(this,document.img)">
+					<option value="strawberry.gif">딸기</option>
+					<option value="banana.gif">바나나</option>
+					<option value="apple.gif">사과</option>
+					<option value="hi.gif">우디</option>
+				</select>
+				</td>
+				<td>
+					<img name="img" src="">
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

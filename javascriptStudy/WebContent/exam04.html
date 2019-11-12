@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="EUC-KR">
+	<title>달력 만들기</title>
+	<style type="text/css">
+		table{width:100%; border-collapse:collapse;}
+		th,td{border:3px solid #bcbcbc; text-align:center; padding:8px;}
+		th{background-color:#e2e2e2; color:#111111;}
+		td{bsckground-color:#f2f2f2;}
+		caption{color:#111111; font-size:20px; background-color:#ffffff}
+	</style>
+	<script type="text/javascript">
+		function show_cal(){
+			day = new Date();
+			year = document.getElementById("y");
+			y = parseInt(year.value)
+			month = document.getElementById("m");
+			m = parseInt(month.value)
+			fday = new Date(y,m-1,1);
+			lday = new Date(y,m,0).getDate();
+			var html = "<table><caption>"+y+"년 "+m+"월</caption>";
+			html += "<tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr><tr>";
+			cnt = 1;
+			for(i=0;i<=6;i++){
+				if(i>=fday.getDay()){
+					html += "<td>" + cnt++ +"</td>";
+				}else{
+					html += "<td></td>";
+				}
+			}
+			html += "<tr>"
+			
+			while(cnt<=lday){
+				for(i=0;i<=6;i++){
+					if(cnt>lday){
+						break;
+					}else{
+						html += "<td>" + cnt++ + "</td>"
+					}
+				}
+				html += "</tr>";
+			}
+			html += "</table>";
+			console.log(lday)
+			cal1.innerHTML = html;
+		}
+	</script>
+</head>
+<body>
+	<select id="y">
+		<option>2017</option><option>2018</option>
+		<option>2019</option><option>2020</option>
+	</select>
+	<select id="m">
+		<option value="1">1월</option><option value="2">2월</option>
+		<option value="3">3월</option><option value="4">4월</option>
+		<option value="5">5월</option><option value="6">6월</option>
+		<option value="7">7월</option><option value="8">8월</option>
+		<option value="9">9월</option><option value="10">10월</option>
+		<option value="11">11월</option><option value="12">12월</option>
+	</select>
+	<input type="button" value="달력보기" onclick="show_cal()">
+	<div id="cal1"></div>
+</body>
+</html>
